@@ -1,0 +1,34 @@
+#!/bin/sh -l
+#PBS -o out
+#PBS -e err
+#PBS -N testrun
+#PBS -A nems
+#PBS -q batch
+#PBS -l procs=40
+#PBS -l walltime=00:10:00
+
+set -x
+
+export MPI_TYPE_DEPTH=20
+export OMP_NUM_THREADS=1
+export ESMF_RUNTIME_COMPLIANCECHECK=OFF
+
+source /etc/profile
+module use /scratch4/NCEPDEV/nems/save/Gerhard.Theurich/Modulefiles
+module load intel impi/5.1.1.109 netcdf esmf/7.1.0bs07-g-IMPI5.1.1.109
+module list
+
+pwd
+
+echo "Model started:  " `date`
+
+cd ~/scratch/testrun
+cp -r /scratch3/NCEPDEV/stmp1/Jiande.Wang/SIS2-GSM-MOM6-CFSv3-INPUT/INPUT_05/* ~/scratch/testrun
+mkdir OUTPUT
+mkdir RESTART
+mpirun  -prepend-rank -np $PBS_NP ./MOM6
+
+echo "Model ended:    " `date`
+
+exit
+
