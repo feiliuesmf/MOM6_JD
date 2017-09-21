@@ -18,7 +18,7 @@ set MACHINE_ID=${platform}
 set COMPILE_OPTION=${MACHINE_ID}-intel.mk
 
 set compile_FMS=1
-set compile_ocean_only=0
+set compile_ocean_only=1
 set compile_MOM6_SIS2=1
 ###############################
 if ( ${compile_FMS} == 1 ) then 
