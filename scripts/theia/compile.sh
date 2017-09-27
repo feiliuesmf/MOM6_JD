@@ -66,7 +66,7 @@ echo "====================================================="
  ../../../../src/mkmf/bin/list_paths ./ ../../../../src/MOM6/{config_src/dynamic,pkg/CVMix-src/src/shared,config_src/solo_driver,src/{*,*/*}}
 
  echo "generating makefile ..."
- ../../../../src/mkmf/bin/mkmf -t ../../../../src/mkmf/templates/${COMPILE_OPTION} -o '-I../../shared/repro' -p 'MOM6 -L../../shared/repro  -lfms' -c "-Duse_libMPI -Duse_netcdf -DSPMD" path_names
+ ../../../../src/mkmf/bin/mkmf -t ../../../../src/mkmf/templates/${COMPILE_OPTION} -o '-I../../shared/repro' -p 'MOM6 -L../../shared/repro  -lfms -L/apps/hdf5/1.8.14-intel/lib/' -c "-Duse_libMPI -Duse_netcdf -DSPMD" path_names
 
  echo "compiling MOM6 ocean only ..."
  make NETCDF=4 REPRO=1 MOM6 -j
@@ -98,7 +98,7 @@ echo "=================================================="
  ../../../../src/mkmf/bin/list_paths ./ ../../../../src/MOM6/config_src/{dynamic,coupled_driver} ../../../../src/MOM6/src/{*,*/*}/ ../../../../src/{atmos_null,coupler,land_null,ice_ocean_extras,icebergs,SIS2,FMS/coupler,FMS/include}
 
  echo "generating makefile ..."
- ../../../../src/mkmf/bin/mkmf -t ../../../../src/mkmf/templates/${COMPILE_OPTION} -o '-I../../shared/repro' -p MOM6 -l '-L../../shared/repro  -lfms' -c '-Duse_libMPI -Duse_netcdf -DSPMD -DUSE_LOG_DIAG_FIELD_INFO -Duse_AM3_physics' path_names
+ ../../../../src/mkmf/bin/mkmf -t ../../../../src/mkmf/templates/${COMPILE_OPTION} -o '-I../../shared/repro' -p MOM6 -l '-L../../shared/repro  -lfms -L/apps/hdf5/1.8.14-intel/lib/' -c '-Duse_libMPI -Duse_netcdf -DSPMD -DUSE_LOG_DIAG_FIELD_INFO -Duse_AM3_physics -D_USE_LEGACY_LAND_' path_names
 
  echo "compiling MOM6 ocean only ..."
  make NETCDF=4 REPRO=1 MOM6 -j

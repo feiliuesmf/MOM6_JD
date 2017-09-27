@@ -1,10 +1,10 @@
 #!/bin/sh -l
-#PBS -o out
-#PBS -e err
+#PBS -o out.$PBS_JOBID
+#PBS -e err.$PBS_JOBID
 #PBS -N testrun
 #PBS -A nems
-#PBS -q batch
-#PBS -l procs=40
+#PBS -q debug
+#PBS -l procs=24
 #PBS -l walltime=00:10:00
 
 set -x
@@ -17,13 +17,18 @@ source /etc/profile
 module use /scratch4/NCEPDEV/nems/save/Gerhard.Theurich/Modulefiles
 module load intel impi/5.1.1.109 netcdf esmf/7.1.0bs07-g-IMPI5.1.1.109
 module list
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/apps/hdf5/1.8.14-intel/lib/
 
 pwd
 
 echo "Model started:  " `date`
 
-cd ~/scratch/testrun
-cp -r /scratch3/NCEPDEV/stmp1/Jiande.Wang/SIS2-GSM-MOM6-CFSv3-INPUT/INPUT_05/* ~/scratch/testrun
+#cp -r /scratch3/NCEPDEV/stmp1/Jiande.Wang/SIS2-GSM-MOM6-CFSv3-INPUT/INPUT_05/* ~/scratch/testrun
+#cp -r ~/scratch/testrun2 ~/scratch/testrun3
+cp /scratch4/NCEPDEV/ocean/noscrub/Fei.Liu/MOM6_JD/build/intel/ocean_only/repro/MOM6 ~/scratch/testrun3
+cd ~/scratch/testrun3
+rm -rf OUTPUT
+rm -rf RESTART
 mkdir OUTPUT
 mkdir RESTART
 mpirun  -prepend-rank -np $PBS_NP ./MOM6
