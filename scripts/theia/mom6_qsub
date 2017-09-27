@@ -23,9 +23,11 @@ pwd
 
 echo "Model started:  " `date`
 
-#cp -r /scratch3/NCEPDEV/stmp1/Jiande.Wang/SIS2-GSM-MOM6-CFSv3-INPUT/INPUT_05/* ~/scratch/testrun
-#cp -r ~/scratch/testrun2 ~/scratch/testrun3
-cp /scratch4/NCEPDEV/ocean/noscrub/Fei.Liu/MOM6_JD/build/intel/ocean_only/repro/MOM6 ~/scratch/testrun3
+rm -rf ~/scratch/testrun3
+mkdir ~/scratch/testrun3
+cp -r /scratch4/NCEPDEV/ocean/noscrub/Fei.Liu/MOM6_Ocean_Only_Input/* ~/scratch/testrun3/
+#cp /scratch4/NCEPDEV/ocean/noscrub/Fei.Liu/MOM6_JD/build/intel/ocean_only/repro/MOM6 ~/scratch/testrun3
+cp /scratch4/NCEPDEV/ocean/noscrub/Fei.Liu/MOM6_OCEAN_MODEL/build/intel/ocean_only/repro/MOM6 ~/scratch/testrun3
 cd ~/scratch/testrun3
 rm -rf OUTPUT
 rm -rf RESTART
