@@ -1,12 +1,12 @@
 #! /bin/bash
 COMP=MOM6
-COMP_SRCDIR=/scratch4/NCEPDEV/ocean/noscrub/Fei.Liu/MOM6_JD
+COMP_SRCDIR=/scratch4/NCEPDEV/ocean/noscrub/Fei.Liu/MOM6_OCEAN_MODEL
 MACHINE_ID=theia
 COMP_BINDIR=INSTALL
 
 source /etc/profile
 module use /scratch4/NCEPDEV/nems/save/Gerhard.Theurich/Modulefiles
-module load intel impi/5.1.1.109 netcdf esmf/7.1.0bs07-g-IMPI5.1.1.109
+module load intel impi/5.1.1.109 netcdf esmf/7.1.0bs29-IMPI5.1.1.109-PNetCDF1.5.0
 
 echo "Building $COMP..."
 cd $COMP_SRCDIR
